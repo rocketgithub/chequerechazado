@@ -8,30 +8,30 @@
                 <form string="Cheques rechazados">
                     <header>
                         <field name="estado" widget="statusbar" statusbar_visible="nuevo,cobrar,recuperado"/>
-                        <button name="cobrar" string="Cobrar" type="object" class="btn-primary" attrs="{'invisible':[('estado','in',['recuperado','cobrar'])]}"/>
-                        <button name="recuperar" string="Recuperar" type="object" class="btn-primary" attrs="{'invisible':[('estado','in',['nuevo','recuperado'])]}"/>
-                        <button name="cancelar" string="Cancelar" type="object" class="btn-primary" attrs="{'invisible':[('estado','in',['nuevo'])]}"/>
+                        <button name="cobrar" string="Cobrar" type="object" class="btn-primary" invisible="estado in ['recuperado','cobrar']"/>
+                        <button name="recuperar" string="Recuperar" type="object" class="btn-primary" invisible="estado in ['nuevo','recuperado']"/>
+                        <button name="cancelar" string="Cancelar" type="object" class="btn-primary" invisible="estado in ['nuevo']"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
                             <h1>
-                                <field name="cliente_id" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
+                                <field name="cliente_id" readonly="estado in ['cobrar','recuperado']"/>
                             </h1>
                         </div>
                         <group>
                             <group>
-                                <field name="fecha" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
-                                <field name="banco_id" domain="[('type', '=', 'bank')]" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
-                                <field name="cuenta_cobrar_id" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
-                                <field name="numero_deposito" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
-                                <field name="monto" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
+                                <field name="fecha" readonly="estado in ['cobrar','recuperado']"/>
+                                <field name="banco_id" domain="[('type', '=', 'bank')]" readonly="estado in ['cobrar','recuperado']"/>
+                                <field name="cuenta_cobrar_id" readonly="estado in ['cobrar','recuperado']"/>
+                                <field name="numero_deposito" readonly="estado in ['cobrar','recuperado']"/>
+                                <field name="monto" readonly="estado in ['cobrar','recuperado']"/>
                             </group>
                             <group>
                                 <field name="fecha_recuperar"/>
                                 <field name="banco_recuperar_id" domain="[('type', '=', 'bank')]"/>
-                                <field name="numero_cheque" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
+                                <field name="numero_cheque" readonly="estado in ['cobrar','recuperado']"/>
                                 <field name="banco_cheque"/>
-                                <field name="motivo_rechazo" attrs="{'readonly':[('estado','in',['cobrar','recuperado'])]}"/>
+                                <field name="motivo_rechazo" readonly="estado in ['cobrar','recuperado']"/>
                                 <field name="asiento_ids" readonly="True" widget="many2many_tags"/>
                             </group>
                         </group>
